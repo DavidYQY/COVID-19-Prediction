@@ -127,3 +127,5 @@ dmypy.json
 
 # Pyre type checker
 .pyre/
+
+twitter_data/COVID-19-TweetIDs/
