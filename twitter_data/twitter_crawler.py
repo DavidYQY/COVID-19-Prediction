@@ -14,7 +14,7 @@ import tweepy
 import random
 random.seed(109)
 
-ratio = 1/1000 # sample ratio samples
+ratio = 1/100 # sample ratio samples
 
 # authorize twitter
 consumer_key = '1k4TYaPXM6W75ijrn1qp2S20X'
@@ -42,13 +42,13 @@ for sub_dir in sub_dirs:
         sampled_lines = random.sample(lines, int(np.ceil(ratio * l)))
         for i in range(0, len(sampled_lines), 100):
             ids = sampled_lines[i:(i+100)]
-            tweets = api.statuses_lookup(ids)
+            tweets = api.statuses_lookup(ids, tweet_mode="extended")
             for tweet in tweets:
                 if hasattr(tweet, 'retweeted_status'):
                     tweet = tweet.retweeted_status
                 if tweet.id not in seen:
                     author = tweet.author.screen_name
-                    text = tweet.text
+                    text = tweet.full_text
                     lang = tweet.lang
                     place  = None
                     if tweet.place:
