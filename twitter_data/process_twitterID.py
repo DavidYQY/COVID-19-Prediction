@@ -7,6 +7,7 @@ Created on Mon Apr  6 16:12:23 2020
 
 
 # process twitter ids on https://github.com/echen102/COVID-19-TweetIDs
+# output ts_tweet_num.csv
 from os import listdir
 import pandas as pd
 
@@ -26,13 +27,13 @@ for sub_dir in sub_dirs:
             lines = f.readlines()
             l = len(lines)
         dat.loc[file] = [month, day, hour, l]
-    '''
+    
         lines = [line.strip() for line in lines]
         total_lines += lines
         
     with open(sub_dir[1:] + '_total.txt', 'w') as f:
         for item in total_lines:
             f.write("%s\n" % item)
-    '''
-#dat.to_csv('ts_tweet_num.csv', index = False)
+    
+dat.to_csv('ts_tweet_num.csv', index = False)
 print("totaltweet:{}".format(dat['twitter_number'].sum()))

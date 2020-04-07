@@ -5,6 +5,7 @@ Created on Mon Apr  6 14:24:28 2020
 @author: DavidYQY
 """
 
+# twitter id -> twitter info using tweepy
 from os import listdir
 from tqdm import tqdm
 import pandas as pd
@@ -13,7 +14,7 @@ import tweepy
 import random
 random.seed(109)
 
-ratio = 1/1000 # sample 1/1000 samples
+ratio = 1/1000 # sample ratio samples
 
 # authorize twitter
 consumer_key = '1k4TYaPXM6W75ijrn1qp2S20X'
@@ -25,8 +26,8 @@ auth.set_access_token(access_token, access_token_secret)
 api = tweepy.API(auth, wait_on_rate_limit=True, wait_on_rate_limit_notify=True)
 
 # twitter id files
-directory = './COVID-19-TweetIDs'
-output_dir = './tweetsInfo'
+directory = './COVID-19-TweetIDs'# this directory is clone from https://github.com/echen102/COVID-19-TweetIDs
+output_dir = './tweetsInfo'# this directory is pre created for outputs (same structure with directory)
 sub_dirs = ['/2020-01', '/2020-02', '/2020-03']
 seen = set()
 
