@@ -4,7 +4,7 @@ from preprocess_text.twokenize import tokenizeRawTweetText
 from nltk.corpus import stopwords
 from nltk.stem import WordNetLemmatizer
 
-URL_PATTERN = re.compile(r'(?i)\b((?:https?://|www\d{0,3}[.]|[a-z0-9.\-]+[.][a-z]{2,4}/)(?:[^\s()<>]+|\(([^\s()<>]+|(\([^\s()<>]+\)))*\))+(?:\(([^\s()<>]+|(\([^\s()<>]+\)))*\)|[^\s`!()\[\]{};:\'".,<>?\xab\xbb\u201c\u201d\u2018\u2019]))')
+URL_PATTERN = re.compile(r'http[s]?://(?:[a-zA-Z]|[0-9]|[$-_@.&+]|[!*\(\), ]|(?:%[0-9a-fA-F][0-9a-fA-F]))+')
 HASHTAG_PATTERN = re.compile(r'#\w*')
 MENTION_PATTERN = re.compile(r'@\w*')
 RESERVED_WORDS_PATTERN = re.compile(r'^(RT|FAV)')
@@ -34,15 +34,14 @@ def preprocessing(text):
     text = NUMBERS_PATTERN.sub("", text)
 
     words = tokenizeRawTweetText(text)
-
     new_words = []
 
     # normalize
-    lemmatizer = WordNetLemmatizer()
+    #lemmatizer = WordNetLemmatizer()
     for word in words:
         # Remove non-ASCII characters from list of tokenized words
         if (re.match(EMOJIS_PATTERN, word) != None):
-            new_word = word
+            new_word = ""
         elif (re.match(HASHTAG_PATTERN, word) != None):
             new_word = word
         elif(re.match(URL_PATTERN, word) != None):
@@ -66,22 +65,11 @@ def findRetweetAcount(tokenized_text):
     return 'None'
 
 if __name__ == '__main__':
-    with open('../data/trumptwitterarchive.txt', 'r') as data_file:
-        json_data = data_file.read()
-
-    data = json.loads(json_data)
-
-    for twitter in data:
-        tokenized_text = tokenizeRawTweetText(twitter['text'])
-        processed_text = preprocessing(twitter['text'])
-        twitter['tokenized_text'] = tokenized_text
-        twitter['processed_text'] = processed_text
-        if len(processed_text) > 0 and processed_text[0] == 'rt':
-            twitter['is_retweet'] = True
-            twitter['retweet_account'] = findRetweetAcount(tokenized_text)
-        else:
-            twitter['is_retweet'] = False
-            twitter['retweet_account'] = 'None'
-
-    with open('../data/processed_trumptwitterarchive.txt', 'w') as outfile:
-        json.dump(data, outfile)
+    '''
+    with open("../bug.txt", 'r') as f:
+        s = f.read()
+    print(s)
+    test = preprocessing(s)
+    print(test)
+    '''
+    

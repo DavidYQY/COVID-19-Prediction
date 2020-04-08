@@ -1,0 +1,3 @@
+@MOUGK @NicoleGbel3 @UniofOxford @Harvard @Tsinghua_Uni @healthmap @IHME_UW @ScientificData @B_Gutierrez_G @NicoleGbel3 this also works for dates:
+
+data$week_of_epidemic &lt;- cut(https://t.co/JtirFql6UV(data$date_onset_symptoms,"%d.%m.%Y"), breaks="weeks")

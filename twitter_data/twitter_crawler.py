@@ -14,7 +14,7 @@ import tweepy
 import random
 random.seed(109)
 
-ratio = 1/100 # sample ratio samples
+ratio = 1/50 # sample ratio samples
 
 # authorize twitter
 consumer_key = '1k4TYaPXM6W75ijrn1qp2S20X'
