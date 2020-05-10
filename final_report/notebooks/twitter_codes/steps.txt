@@ -1,0 +1,5 @@
+1. clone COVID-19-TweetIDs repo from https://github.com/echen102/COVID-19-TweetIDs
+2. run process_twitterID.py: -> ts_tweet_num.csv
+3. set up directory of tweetsInfo/ and 2020-01, 2020-02, 2020-03, run twitter_crawler.py: -> tweetsInfo/
+4. combine_tweetinfo.py: tweetsInfo/ -> tweetInfo.csv
+5. twitter_ts_analysis.ipynb 
